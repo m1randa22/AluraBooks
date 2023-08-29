@@ -1,0 +1,166 @@
+.cabecalho__menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    background-image: url(../img/Menu.svg);
+    background-repeat: no-repeat;
+    background-position: center; /*Posicionou a imagem no centro após pedir para não se repetir*/
+    display: inline-block;
+}
+
+.cabecalho {
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between; /*Separou os dois filhos (div) para cada lado*/
+    align-items: center; /*Centralizou os itens do header no centro da linha*/
+    position: relative; /*Deixou o menu relativo para a lista ser fixa (o padrão é fixed)*/
+}
+
+.container { /*Aqui, centralizamos cada elemento/item no seu centro*/
+    display: flex;
+    align-items: center;
+}
+
+.container__botao {
+    display: none; /*Retirou o "checked" do lado esquerdo do menu*/
+}
+
+.container__botao:checked ~ .container__rotulo > .cabecalho__menu-hamburguer{
+    background-image: url(../img/MenuAberto.svg); /*Este escopo serve para abrir a imagem do menu branco quando clicado e abrir as opções*/
+}
+
+.container__botao:checked ~ .container__rotulo {
+    background: var(--azul-degrade);/*Este escopo serve para quando clicar no menu, executar o rotulo da cor --azul-degrade*/
+}
+
+.container__imagem {
+    padding: 1em;
+}
+
+.container__botao:checked ~ .lista-menu { /* o ~ é um combinador do CSS. "Se o container__botao tiver um checked, abre a lista-menu"*/
+    display: block;
+}
+
+.lista-menu {
+    display: none; /*Retirou os elementos do lado direito e deixou invisível*/
+    position: absolute; /*Deixou a lista fixa*/
+    top: 100%; /*Tirou 100% do cabeçalho, movimentando a lista para baixo dele*/
+    width: 60vw; /*Aumentou a largura do quadro branco*/
+}
+
+.lista-menu__titulo, .lista-menu__item {
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.lista-menu__titulo {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase; /*Deixa as palavras em maiúsculas*/
+}
+
+.container__titulo {
+    display: none; /*Retirou o título colocado apenas para o @media*/
+}
+
+.opcoes {
+    display: none;
+}
+
+.container__texto {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+
+    .container__titulo, .container__titulo--negrito {
+        font-family: var(--font-secundario);
+        font-size: 30px;
+    }
+
+    .ccontainer__titulo {
+        font-weight: 400;
+        display: block;
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .opcoes {
+        display: flex; /*Posicionou um ao lado do outro*/
+    }
+
+    .opcoes__item {
+        padding: 0 1em; /*Colocou um espaçamento entre eles*/
+        text-transform: uppercase; /*Todos em letra maiúscula*/
+    }
+
+    .opcoes__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+    
+    .cabecalho__menu-hamburguer {
+        display: none;
+    }
+ 
+    .container__imagem-transparent {
+        display: none;
+    }
+
+    .opcoes__botao:checked ~ .lista-menu {
+        display: block; /*Para aparecer os item quando clicar*/
+        width: auto; /*Para preencher apenas seu espaço*/
+    }
+
+    .opcoes__botao {
+        display: none; /*Retirou o quadrado do checkbox*/
+    }
+
+    .opcoes__botao:checked ~ .opcoes__rotulo > .opcoes__item {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .opcoes__item {
+        padding: 2em 1em;
+    }
+
+    .lista-menu__item:hover {
+        background: var(--azul-degrade);
+    }
+
+    .lista-menu__item:hover>.lista-menu__link {
+        -webkit-text-fill-color: var(--branco); /*Para aplicar a cor --branco*/
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .container__link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .cabecalho {
+        padding: 0 2em;
+    }
+
+    .opcoes {
+        margin-right: auto;
+    }
+
+    .container__texto {
+        display: block;
+    }
+}
